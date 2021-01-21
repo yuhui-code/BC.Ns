@@ -3,7 +3,7 @@ using System;
 using System.ComponentModel;
 using System.Threading.Tasks;
 
-namespace BC.WebApi.Logger
+namespace BC.Jwt.Logger
 {
     public class Logger<TClassName> : ILogger<TClassName>
     {

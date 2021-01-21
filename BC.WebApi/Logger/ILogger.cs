@@ -1,6 +1,6 @@
 ﻿using NLog;
 
-namespace BC.WebApi.Logger
+namespace BC.Jwt.Logger
 {
     public interface ILogger<T> : ILogger
     {

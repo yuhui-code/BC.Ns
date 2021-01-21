@@ -15,7 +15,7 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-using BC.WebApi.Logger;
+using BC.Jwt.Logger;
 using StructureMap.Configuration.DSL;
 
 namespace BC.Ns.Api.Ioc.DependencyResolution

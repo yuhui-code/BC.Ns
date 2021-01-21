@@ -26,7 +26,7 @@ namespace BC.Ns.Api.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet, Route("healthmonitor")]
-        [AllowAnonymous]
+        //[AllowAnonymous]
         public async Task<bool> GetTest()
         {
             return await _canaryDomain.GetTest();

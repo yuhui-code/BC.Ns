@@ -100,6 +100,7 @@
     <Compile Include="CommonException\BusinessException.cs" />
     <Compile Include="CommonException\NotFoundException.cs" />
     <Compile Include="CommonException\UnauthorizedException.cs" />
+    <Compile Include="Filter\AuthenticationAttribute.cs" />
     <Compile Include="Filter\CustomExceptionFilterAttribute.cs" />
     <Compile Include="Logger\ILogger.cs" />
     <Compile Include="Logger\Logger.cs" />
@@ -110,6 +111,11 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\BC.Utility\BC.Utility.csproj">
+      <Project>{8dabe319-5530-4fd9-8fa8-a1c4c9c072f5}</Project>
+      <Name>BC.Utility</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

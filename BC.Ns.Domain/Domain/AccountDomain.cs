@@ -1,9 +1,9 @@
 ﻿using BC.Ns.Domain.Interface;
 using BC.Ns.Models.Request;
-using BC.WebApi.Logger;
-using Microsoft.Owin.Security;
-using Microsoft.Owin.Security.OAuth;
-using System;
+using BC.Ns.Models.Response;
+using BC.Utility;
+using BC.Utility.Models;
+using BC.Jwt.Logger;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -18,51 +18,18 @@ namespace BC.Ns.Domain.Domain
             _logger = logger;
         }
 
-        public async Task<bool> Login(AccountRequest account)
+        public async Task<AccountResponse> Login(string username, string password)
         {
-            var tokenExpiration = TimeSpan.FromDays(14);
-            ClaimsIdentity identity = new ClaimsIdentity(OAuthDefaults.AuthenticationType);
-            identity.AddClaim(new Claim(ClaimTypes.Name, "zzzili"));
-            identity.AddClaim(new Claim(ClaimTypes.Sid, "1"));
+            var token = TokenHelper.GenerateToken(username);
 
-            var props = new AuthenticationProperties()
+            var result = new AccountResponse
             {
-                IssuedUtc = DateTime.UtcNow,
-                ExpiresUtc = DateTime.UtcNow.Add(tokenExpiration),
+                TokenType = "Bearer",
+                AccessToken = token,
+                ExpiresIn = 1
             };
 
-            var ticket = new AuthenticationTicket(identity, props);
-            var accessToken = Startup.OAuthOptions.AccessTokenFormat.Protect(ticket);
-            JObject tokenResponse = new JObject(
-                                        new JProperty("userName", "zzzili"),
-                                        new JProperty("access_token", accessToken),
-                                        new JProperty("token_type", "bearer"),
-                                        new JProperty("expires_in", tokenExpiration.TotalSeconds.ToString()),
-                                        new JProperty(".issued", ticket.Properties.IssuedUtc.ToString()),
-                                        new JProperty(".expires", ticket.Properties.ExpiresUtc.ToString()));
-
-            return tokenResponse;
-
-            return await Task.FromResult<bool>(true);
+            return await Task.FromResult(result);
         }
-    }
-
-    public class GenerateTokenModel
-    {
-        public GenerateTokenModel()
-        {
-            Identity = new ClaimsIdentity();
-        }
-
-        public ClaimsIdentity Identity { get; set; }
-
-        public string AppCode { get; set; }
-
-        public string JWTKey { get; set; }
-
-        public double ExpiresInSeconds { get; set; }
-
-        //Token颁发机构
-        public string ValidIssuer { get; set; }
     }
 }

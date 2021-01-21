@@ -1,4 +1,4 @@
-﻿namespace BC.WebApi.CommonException
+﻿namespace BC.Jwt.CommonException
 {
     public abstract class BaseException : System.Exception
     {

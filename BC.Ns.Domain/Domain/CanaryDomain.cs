@@ -1,5 +1,5 @@
 ﻿using BC.Ns.Domain.Interface;
-using BC.WebApi.Logger;
+using BC.Jwt.Logger;
 using System.Threading.Tasks;
 
 namespace BC.Ns.Domain.Domain

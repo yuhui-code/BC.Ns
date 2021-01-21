@@ -1,5 +1,6 @@
 ﻿using BC.Ns.Domain.Interface;
 using BC.Ns.Models.Request;
+using BC.Ns.Models.Response;
 using System.Threading.Tasks;
 using System.Web.Http;
 
@@ -20,10 +21,10 @@ namespace BC.Ns.Api.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet, Route("login")]
-        //[AllowAnonymous]
-        public async Task<bool> Login(AccountRequest account)
+        [AllowAnonymous]
+        public async Task<AccountResponse> Login(string username, string password)
         {
-            return await _accountDomain.Login(account);
+            return await _accountDomain.Login(username, password);
         }
     }
 }

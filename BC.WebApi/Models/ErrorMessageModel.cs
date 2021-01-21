@@ -1,4 +1,4 @@
-﻿namespace BC.WebApi.Models
+﻿namespace BC.Jwt.Models
 {
     public class ErrorMessageModel
     {
