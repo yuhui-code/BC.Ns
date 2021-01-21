@@ -4,11 +4,18 @@ using System.Web.Http;
 
 namespace BC.Ns.Api.Controllers
 {
+    /// <summary>
+    /// Canary Controller
+    /// </summary>
     [RoutePrefix("api/canary")]
     public class CanaryController : ApiController
     {
         private readonly ICanaryDomain _canaryDomain;
 
+        /// <summary>
+        /// Canary Controller
+        /// </summary>
+        /// <param name="canaryDomain"></param>
         public CanaryController(ICanaryDomain canaryDomain)
         {
             _canaryDomain = canaryDomain;

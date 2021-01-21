@@ -1,6 +1,5 @@
 ﻿namespace BC.WebApi.CommonException
 {
-
     public abstract class BaseException : System.Exception
     {
         public string CustomErrorCode { get; set; }

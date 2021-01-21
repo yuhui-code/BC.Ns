@@ -1,4 +1,6 @@
 ﻿using BC.WebApi.Filter;
+using NLog;
+using System;
 using System.Web.Http.Filters;
 
 namespace BC.Ns.Api.App_Start

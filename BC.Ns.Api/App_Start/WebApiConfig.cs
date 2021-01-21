@@ -1,4 +1,5 @@
-﻿using System.Web.Http;
+﻿using System.Net;
+using System.Web.Http;
 
 namespace BC.Ns.Api.App_Start
 {
@@ -9,6 +10,8 @@ namespace BC.Ns.Api.App_Start
             // Web API 配置和服务
             FilterConfig.RegisterGlobalFilters(config.Filters);
             SwaggerConfig.Register(config);
+
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
 
             // Web API 路由
             config.MapHttpAttributeRoutes();

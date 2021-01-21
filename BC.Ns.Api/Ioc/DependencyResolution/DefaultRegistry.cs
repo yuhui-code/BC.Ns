@@ -15,6 +15,7 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
+using BC.WebApi.Logger;
 using StructureMap.Configuration.DSL;
 
 namespace BC.Ns.Api.Ioc.DependencyResolution
@@ -29,9 +30,10 @@ namespace BC.Ns.Api.Ioc.DependencyResolution
                 scan =>
                 {
                     scan.Assembly("BC.Ns.Domain");
+                    scan.Assembly("BC.WebApi");
                     scan.WithDefaultConventions();
                 });
-            //For<IExample>().Use<Example>();
+            For(typeof(ILogger<>)).Use(typeof(Logger<>));
         }
 
         #endregion

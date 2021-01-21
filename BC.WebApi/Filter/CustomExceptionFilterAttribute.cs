@@ -1,4 +1,5 @@
 ﻿using BC.WebApi.CommonException;
+using BC.WebApi.Logger;
 using BC.WebApi.Models;
 using System.Net;
 using System.Net.Http;
@@ -8,9 +9,18 @@ namespace BC.WebApi.Filter
 {
     public class CustomExceptionFilterAttribute : ExceptionFilterAttribute, IExceptionFilter
     {
+        private readonly ILogger<CustomExceptionFilterAttribute> _logger;
+
+        public CustomExceptionFilterAttribute()
+        {
+            _logger = new Logger<CustomExceptionFilterAttribute>();
+        }
+
         public override void OnException(HttpActionExecutedContext actionExecutedContext)
         {
             base.OnException(actionExecutedContext);
+
+            _logger.Error(actionExecutedContext.Exception);
 
             HandleExceptionAsync(actionExecutedContext);
             return;
