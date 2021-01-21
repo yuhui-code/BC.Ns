@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Http;
+﻿using System.Web.Http;
 
-namespace BC.Ns.Api
+namespace BC.Ns.Api.App_Start
 {
     public static class WebApiConfig
     {
         public static void Register(HttpConfiguration config)
         {
             // Web API 配置和服务
+            FilterConfig.RegisterGlobalFilters(config.Filters);
+            SwaggerConfig.Register(config);
 
             // Web API 路由
             config.MapHttpAttributeRoutes();
