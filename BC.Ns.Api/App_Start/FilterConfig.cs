@@ -10,7 +10,7 @@ namespace BC.Ns.Api.App_Start
         {
             filters.Add(new CustomExceptionFilterAttribute());
 
-            filters.Add(new AuthorizeAttribute());
+            //filters.Add(new AuthorizeAttribute());
             filters.Add(new AuthenticationAttribute());
         }
     }

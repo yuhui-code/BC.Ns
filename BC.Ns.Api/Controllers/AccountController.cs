@@ -21,7 +21,7 @@ namespace BC.Ns.Api.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet, Route("login")]
-        [AllowAnonymous]
+        [OverrideAuthentication]
         public async Task<AccountResponse> Login(string username, string password)
         {
             return await _accountDomain.Login(username, password);
