@@ -6,6 +6,7 @@ using BC.Utility.Models;
 using BC.Jwt.Logger;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace BC.Ns.Domain.Domain
 {
@@ -20,13 +21,18 @@ namespace BC.Ns.Domain.Domain
 
         public async Task<AccountResponse> Login(string username, string password)
         {
-            var token = TokenHelper.GenerateToken(username);
+            var identityClaims = new List<Claim>()
+            {
+                new Claim("useroid",username)
+            };
+
+            var token = TokenHelper.GenerateToken(identityClaims);
 
             var result = new AccountResponse
             {
-                TokenType = "Bearer",
-                AccessToken = token,
-                ExpiresIn = 1
+                TokenType = token.TokenType,
+                AccessToken = token.AccessToken,
+                ExpiresIn = token.ExpiresIn
             };
 
             return await Task.FromResult(result);

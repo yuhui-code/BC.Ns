@@ -1,8 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace BC.Ns.Models.Response
+namespace BC.Utility.Models
 {
-    public class AccountResponse
+    public class TokenModel
     {
         public string TokenType { get; set; }
         public string AccessToken { get; set; }
