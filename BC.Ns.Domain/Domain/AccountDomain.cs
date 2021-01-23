@@ -13,35 +13,34 @@ namespace BC.Ns.Domain.Domain
 {
     public class AccountDomain : IAccountDomain
     {
-        private ILogger<AccountDomain> _logger;
+        private readonly NsDbContext _dbContext;
+        private readonly ILogger<AccountDomain> _logger;
 
-        public AccountDomain(ILogger<AccountDomain> logger)
+        public AccountDomain(NsDbContext dbContext, ILogger<AccountDomain> logger)
         {
             _logger = logger;
+            _dbContext = dbContext;
         }
 
         public async Task<AccountResponse> Login(string username, string password)
         {
-            using (var context = new NsDbContext())
+            var userinfo = _dbContext.Users.FindAsync(1).Result;
+
+            var identityClaims = new List<Claim>()
+                {
+                    new Claim("email",userinfo.Email)
+                };
+
+            var token = TokenHelper.GenerateToken(identityClaims);
+
+            var result = new AccountResponse
             {
-                var userinfo = context.Users.FindAsync(1).Result;
+                TokenType = token.TokenType,
+                AccessToken = token.AccessToken,
+                ExpiresIn = token.ExpiresIn
+            };
 
-                var identityClaims = new List<Claim>()
-                {
-                    new Claim("useroid",username)
-                };
-
-                var token = TokenHelper.GenerateToken(identityClaims);
-
-                var result = new AccountResponse
-                {
-                    TokenType = token.TokenType,
-                    AccessToken = token.AccessToken,
-                    ExpiresIn = token.ExpiresIn
-                };
-
-                return await Task.FromResult(result);
-            }
+            return await Task.FromResult(result);
         }
     }
 }

@@ -16,6 +16,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using BC.Jwt.Logger;
+using BC.Ns.Data;
 using StructureMap.Configuration.DSL;
 
 namespace BC.Ns.Api.Ioc.DependencyResolution
@@ -34,6 +35,7 @@ namespace BC.Ns.Api.Ioc.DependencyResolution
                     scan.WithDefaultConventions();
                 });
             For(typeof(ILogger<>)).Use(typeof(Logger<>));
+            For<NsDbContext>().Use<NsDbContext>();
         }
 
         #endregion

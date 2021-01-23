@@ -206,6 +206,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BC.Ns.Data\BC.Ns.Data.csproj">
+      <Project>{9F30D3D8-C061-4915-93CF-26E4D6256D54}</Project>
+      <Name>BC.Ns.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BC.Ns.Domain\BC.Ns.Domain.csproj">
       <Project>{C99BDF14-44D5-4C2E-B9D3-8F56CFC12C2C}</Project>
       <Name>BC.Ns.Domain</Name>
