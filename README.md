@@ -9,3 +9,4 @@ BC.Ns
 5.  CORS
 6.  StructureMap
 7.  JWT
+8.  EntityFramework6 - Code First
