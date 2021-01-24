@@ -1,6 +1,6 @@
 ﻿using BC.Jwt.CommonException;
-using BC.Jwt.Logger;
 using BC.Jwt.Models;
+using BC.WebApi.Logger;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http.Filters;

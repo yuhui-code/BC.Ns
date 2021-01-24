@@ -1,13 +1,12 @@
 ﻿using BC.Ns.Domain.Interface;
-using BC.Ns.Models.Request;
 using BC.Ns.Models.Response;
 using BC.Utility;
-using BC.Utility.Models;
-using BC.Jwt.Logger;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using BC.Ns.Data;
+using BC.WebApi.Logger;
+using System.Data.Entity;
 
 namespace BC.Ns.Domain.Domain
 {
@@ -24,7 +23,7 @@ namespace BC.Ns.Domain.Domain
 
         public async Task<AccountResponse> Login(string username, string password)
         {
-            var userinfo = _dbContext.Users.FindAsync(1).Result;
+            var userinfo = await _dbContext.Users.FirstOrDefaultAsync(c => c.UserName == username && !c.IsDelete);
 
             var identityClaims = new List<Claim>()
                 {

@@ -24,6 +24,7 @@ namespace BC.Ns.Api.Controllers
         [OverrideAuthentication]
         public async Task<AccountResponse> Login(string username, string password)
         {
+            username = "huiyu";
             return await _accountDomain.Login(username, password);
         }
     }
