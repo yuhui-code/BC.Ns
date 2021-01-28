@@ -2,7 +2,6 @@ using BC.Ns.Api.App_Start;
 using System.Net;
 using System.Web;
 using System.Web.Http;
-using System.Web.Mvc;
 
 namespace BC.Ns.Api
 {
@@ -18,8 +17,6 @@ namespace BC.Ns.Api
 
             // Swagger ≈‰÷√
             SwaggerConfig.Register(GlobalConfiguration.Configuration);
-
-            AreaRegistration.RegisterAllAreas();
 
             GlobalConfiguration.Configure(WebApiConfig.Register);
         }

@@ -1,5 +1,4 @@
 ﻿using BC.Ns.Domain.Interface;
-using BC.Ns.Models.Request;
 using BC.Ns.Models.Response;
 using System.Threading.Tasks;
 using System.Web.Http;

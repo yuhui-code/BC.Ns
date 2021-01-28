@@ -1,5 +1,6 @@
 using BC.Ns.Data;
 using BC.WebApi.Logger;
+using StructureMap;
 using StructureMap.Configuration.DSL;
 
 namespace BC.Ioc

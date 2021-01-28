@@ -7,13 +7,13 @@ using System.Web.Http.Filters;
 
 namespace BC.WebApi.Filter
 {
-    public class CustomExceptionFilterAttribute : ExceptionFilterAttribute, IExceptionFilter
+    public class ExceptionHandlerFilterAttribute : ExceptionFilterAttribute, IExceptionFilter
     {
-        private readonly ILogger<CustomExceptionFilterAttribute> _logger;
+        private readonly ILogger<ExceptionHandlerFilterAttribute> _logger;
 
-        public CustomExceptionFilterAttribute()
+        public ExceptionHandlerFilterAttribute()
         {
-            _logger = new Logger<CustomExceptionFilterAttribute>();
+            _logger = new Logger<ExceptionHandlerFilterAttribute>();
         }
 
         public override void OnException(HttpActionExecutedContext actionExecutedContext)
