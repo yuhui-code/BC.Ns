@@ -1,6 +1,6 @@
 using StructureMap;
 
-namespace BC.Ns.Api.App_Start.Ioc
+namespace BC.Ioc
 {
     public static class IoC
     {

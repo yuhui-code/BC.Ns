@@ -2,7 +2,7 @@ using BC.Ns.Data;
 using BC.WebApi.Logger;
 using StructureMap.Configuration.DSL;
 
-namespace BC.Ns.Api.App_Start.Ioc
+namespace BC.Ioc
 {
     public class DefaultRegistry : Registry
     {

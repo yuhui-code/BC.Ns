@@ -1,7 +1,7 @@
 using System.Web.Http.Dependencies;
 using StructureMap;
 
-namespace BC.Ns.Api.App_Start.Ioc
+namespace BC.Ioc
 {
     /// <summary>
     /// The structure map web api dependency scope.

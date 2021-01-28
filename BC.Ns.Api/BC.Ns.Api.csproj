@@ -177,11 +177,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="App_Start\Ioc\DefaultRegistry.cs" />
-    <Compile Include="App_Start\Ioc\IoC.cs" />
-    <Compile Include="App_Start\Ioc\StructureMapDependencyScope.cs" />
-    <Compile Include="App_Start\Ioc\StructureMapWebApiDependencyResolver.cs" />
-    <Compile Include="App_Start\Ioc\StructureMapWebApiDependencyScope.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
   </ItemGroup>
@@ -203,6 +198,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BC.Ioc\BC.Ioc.csproj">
+      <Project>{75AE2D59-53DD-4D8E-8B5C-4C02C7AEF4CB}</Project>
+      <Name>BC.Ioc</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BC.Ns.Data\BC.Ns.Data.csproj">
       <Project>{9F30D3D8-C061-4915-93CF-26E4D6256D54}</Project>
       <Name>BC.Ns.Data</Name>

@@ -5,7 +5,7 @@ using System.Web;
 using Microsoft.Practices.ServiceLocation;
 using StructureMap;
 
-namespace BC.Ns.Api.App_Start.Ioc
+namespace BC.Ioc
 {
     /// <summary>
     /// The structure map dependency scope.
