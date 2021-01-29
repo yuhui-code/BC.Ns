@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BC.Ioc", "BC.Ioc\BC.Ioc.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BC.Ns.Api", "BC.Ns.Api\BC.Ns.Api.csproj", "{665C9599-1D04-42C0-A48E-0CC482BAB5E0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BC.Ns.Data.EFCore", "BC.Ns.Data.EFCore\BC.Ns.Data.EFCore.csproj", "{225A8031-BFA4-470F-B60F-62FDBBE72907}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -59,6 +61,10 @@ Global
 		{665C9599-1D04-42C0-A48E-0CC482BAB5E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{665C9599-1D04-42C0-A48E-0CC482BAB5E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{665C9599-1D04-42C0-A48E-0CC482BAB5E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{225A8031-BFA4-470F-B60F-62FDBBE72907}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{225A8031-BFA4-470F-B60F-62FDBBE72907}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{225A8031-BFA4-470F-B60F-62FDBBE72907}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{225A8031-BFA4-470F-B60F-62FDBBE72907}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

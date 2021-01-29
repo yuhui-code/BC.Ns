@@ -4,9 +4,9 @@ using BC.Utility;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using BC.Ns.Data;
 using BC.WebApi.Logger;
-using System.Data.Entity;
+using BC.Ns.Data.EFCore;
+using Microsoft.EntityFrameworkCore;
 
 namespace BC.Ns.Domain.Domain
 {

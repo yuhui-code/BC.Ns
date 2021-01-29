@@ -20,6 +20,7 @@ namespace BC.Ioc
                 });
             For(typeof(ILogger<>)).Use(typeof(Logger<>));
             For<NsDbContext>().Use<NsDbContext>();
+            For<BC.Ns.Data.EFCore.NsDbContext>().Use<BC.Ns.Data.EFCore.NsDbContext>();
         }
 
         #endregion
