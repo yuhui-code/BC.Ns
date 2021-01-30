@@ -10,3 +10,4 @@ BC.Ns
 6.  StructureMap
 7.  JWT
 8.  EntityFramework6 - Code First
+9.  EntityFrameworkCore v3.1.11
