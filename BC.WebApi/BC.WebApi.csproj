@@ -99,8 +99,9 @@
     <Compile Include="CommonException\BaseException.cs" />
     <Compile Include="CommonException\BusinessException.cs" />
     <Compile Include="CommonException\NotFoundException.cs" />
+    <Compile Include="CommonException\ForbiddenException.cs" />
     <Compile Include="CommonException\UnauthorizedException.cs" />
-    <Compile Include="Filter\AuthorizationSecurityAttribute.cs" />
+    <Compile Include="Filter\AuthorizeAttribute.cs" />
     <Compile Include="Filter\AuthenticationAttribute.cs" />
     <Compile Include="Filter\ExceptionHandlerFilterAttribute.cs" />
     <Compile Include="Logger\ILogger.cs" />

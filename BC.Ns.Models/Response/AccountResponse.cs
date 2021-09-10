@@ -6,6 +6,6 @@ namespace BC.Ns.Models.Response
     {
         public string TokenType { get; set; }
         public string AccessToken { get; set; }
-        public DateTime ExpiresIn { get; set; }
+        public int ExpiresIn { get; set; }
     }
 }

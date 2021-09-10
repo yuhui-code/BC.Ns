@@ -1,5 +1,5 @@
-﻿using BC.Jwt.CommonException;
-using BC.Jwt.Models;
+﻿using BC.Jwt.Models;
+using BC.WebApi.CommonException;
 using BC.WebApi.Logger;
 using System.Net;
 using System.Net.Http;
@@ -52,6 +52,12 @@ namespace BC.WebApi.Filter
                 code = HttpStatusCode.PreconditionFailed;
                 errorMessageModel.CustomErrorCode = myException.CustomErrorCode;
                 errorMessageModel.UserMessage = myException.Message;
+            }
+            else if (context.Exception is ForbiddenException forbiddenException)
+            {
+                code = HttpStatusCode.Forbidden;
+                errorMessageModel.CustomErrorCode = forbiddenException.CustomErrorCode;
+                errorMessageModel.UserMessage = forbiddenException.Message;
             }
             else
             {

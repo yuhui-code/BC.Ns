@@ -15,7 +15,7 @@ namespace BC.Utility
         private static string _expireMinutes = ConfigurationManager.AppSettings["tokenExpireMinutes"];
         private static string _issuer = ConfigurationManager.AppSettings["tokenIssuer"];
         private static string _audience = ConfigurationManager.AppSettings["tokenAudience"];
-        
+
         /// <summary>
         /// generate token
         /// </summary>
@@ -52,7 +52,7 @@ namespace BC.Utility
             {
                 TokenType = "Bearer",
                 AccessToken = token,
-                ExpiresIn = expiresDate
+                ExpiresIn = int.Parse(_expireMinutes) * 60
             };
         }
 
@@ -63,35 +63,55 @@ namespace BC.Utility
         /// <returns></returns>
         public static ClaimsPrincipal GetPrincipal(string token)
         {
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var jwtToken = tokenHandler.ReadToken(token) as JwtSecurityToken;
+            if (jwtToken == null) return null;
+
+            // Generate the byte array corresponding to the encoding
+            var symmetricKey = Encoding.UTF8.GetBytes(_secret);
+
+            // Generate parameters for validation token
+            var validationParameters = new TokenValidationParameters()
+            {
+                RequireExpirationTime = true, // token是否包含有效期
+                ValidIssuer = _issuer,
+                ValidAudience = _audience,
+                ValidateTokenReplay = true,
+                ValidateLifetime = true,
+                IssuerSigningKey = new SymmetricSecurityKey(symmetricKey) // 生成token时的安全秘钥
+            };
+
+            SecurityToken securityToken; // 接受解码后的token对象
+            var principal = tokenHandler.ValidateToken(token, validationParameters, out securityToken);
+            return principal; // 返回秘钥的主体对象，包含秘钥的所有相关信息
+        }
+
+        public static int ValidateToken(string token, out ClaimsIdentity claimsidentity)
+        {
+            claimsidentity = new ClaimsIdentity();
             try
             {
-                var tokenHandler = new JwtSecurityTokenHandler();
-                var jwtToken = tokenHandler.ReadToken(token) as JwtSecurityToken;
-                if (jwtToken == null) return null;
+                // Call the custom getprincipal to get the token information object
+                var simplePrinciple = GetPrincipal(token);
 
-                // Generate the byte array corresponding to the encoding
-                var symmetricKey = Encoding.UTF8.GetBytes(_secret);
+                // Get master declaration identity
+                var identity = simplePrinciple?.Identity as ClaimsIdentity;
 
-                // Generate parameters for validation token
-                var validationParameters = new TokenValidationParameters()
-                {
-                    RequireExpirationTime = true, // token是否包含有效期
-                    ValidIssuer = _issuer,
-                    ValidAudience = _audience,
-                    ValidateTokenReplay = true,
-                    ValidateLifetime = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(symmetricKey) // 生成token时的安全秘钥
-                };
+                if (identity == null) return 401;
+                if (!identity.IsAuthenticated) return 401;
 
-                SecurityToken securityToken; // 接受解码后的token对象
-                var principal = tokenHandler.ValidateToken(token, validationParameters, out securityToken);
-                return principal; // 返回秘钥的主体对象，包含秘钥的所有相关信息
+                claimsidentity = identity;
+                return 200;
             }
-
             catch (Exception ex)
             {
-                return null;
+                if (ex.Message.Contains("The token is expired."))
+                {
+                    return 403;
+                }
             }
+
+            return 401;
         }
     }
 }

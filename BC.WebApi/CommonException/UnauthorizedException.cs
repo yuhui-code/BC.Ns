@@ -1,4 +1,4 @@
-﻿namespace BC.Jwt.CommonException
+﻿namespace BC.WebApi.CommonException
 {
     public class UnauthorizedException : BaseException
     {

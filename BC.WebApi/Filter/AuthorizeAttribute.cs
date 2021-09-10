@@ -16,9 +16,8 @@ namespace BC.WebApi.Filter
                 return false;
             }
 
-            // Call this method to generate the corresponding "ID card holder" according to the token
-            var principal = ValidateToken(authorization.Parameter);
-            if (!principal)
+            var code = TokenHelper.ValidateToken(authorization.Parameter, out ClaimsIdentity claimsidentity);
+            if (code != 200)
             {
                 return false;
             }
@@ -29,20 +28,6 @@ namespace BC.WebApi.Filter
         public override void OnAuthorization(HttpActionContext actionContext)
         {
             base.OnAuthorization(actionContext);
-        }
-
-        private bool ValidateToken(string token)
-        {
-            // Call the custom getprincipal to get the token information object
-            var simplePrinciple = TokenHelper.GetPrincipal(token);
-
-            // Get master declaration identity
-            var identity = simplePrinciple?.Identity as ClaimsIdentity;
-
-            if (identity == null) return false;
-            if (!identity.IsAuthenticated) return false;
-
-            return true;
         }
     }
 }

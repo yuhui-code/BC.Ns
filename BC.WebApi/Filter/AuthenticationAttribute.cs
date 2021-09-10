@@ -1,5 +1,5 @@
-﻿using BC.Jwt.CommonException;
-using BC.Utility;
+﻿using BC.Utility;
+using BC.WebApi.CommonException;
 using System;
 using System.Security.Claims;
 using System.Security.Principal;
@@ -20,13 +20,22 @@ namespace BC.WebApi.Filter
             // Gets the token object of the request
             var authorization = context.Request.Headers.Authorization;
 
-            if(authorization == null)
+            if (authorization == null)
             {
                 return;
             }
 
-            // Call this method to generate the corresponding "ID card holder" according to the token
-            var principal = await AuthenticateJwtToken(authorization.Parameter);
+            var code = TokenHelper.ValidateToken(authorization.Parameter, out ClaimsIdentity claimsidentity);
+            if (code != 200)
+            {
+                switch (code)
+                {
+                    case 403: throw new ForbiddenException("The token is expired.");
+                    default: throw new UnauthorizedException();
+                }
+            }
+
+            var principal = new ClaimsPrincipal(claimsidentity);
             if (principal == null)
             {
                 throw new UnauthorizedException();
@@ -34,37 +43,6 @@ namespace BC.WebApi.Filter
 
             // Set the principal for authentication
             context.Principal = principal;
-        }
-
-        private async Task<IPrincipal> AuthenticateJwtToken(string token)
-        {
-            ClaimsIdentity claimsidentity;
-            if (!ValidateToken(token, out claimsidentity))
-            {
-                return await Task.FromResult<IPrincipal>(null);
-            }
-
-            // Here is the logic to do after the verification is successful
-
-            // Putting the above ID card in the claims principal is equivalent to giving the ID card to the holder
-            return await Task.FromResult(new ClaimsPrincipal(claimsidentity));
-        }
-
-        private bool ValidateToken(string token, out ClaimsIdentity claimsidentity)
-        {
-            claimsidentity = new ClaimsIdentity();
-
-            // Call the custom getprincipal to get the token information object
-            var simplePrinciple = TokenHelper.GetPrincipal(token);
-
-            // Get master declaration identity
-            var identity = simplePrinciple?.Identity as ClaimsIdentity;
-
-            if (identity == null) return false;
-            if (!identity.IsAuthenticated) return false;
-
-            claimsidentity = identity;
-            return true;
         }
 
         public Task ChallengeAsync(HttpAuthenticationChallengeContext context, CancellationToken cancellationToken)
