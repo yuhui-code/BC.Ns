@@ -9,13 +9,13 @@ namespace BC.Ns.Api
     {
         protected void Application_Start()
         {
-            // °²È«Ð­Òé
+            // ï¿½ï¿½È«Ð­ï¿½ï¿½
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
 
-            // Filters ÅäÖÃ
+            // Filters ï¿½ï¿½ï¿½ï¿½
             FilterConfig.RegisterGlobalFilters(GlobalConfiguration.Configuration.Filters);
 
-            // Swagger ÅäÖÃ
+            // Swagger ï¿½ï¿½ï¿½ï¿½
             SwaggerConfig.Register(GlobalConfiguration.Configuration);
 
             GlobalConfiguration.Configure(WebApiConfig.Register);

@@ -9,8 +9,8 @@ namespace BC.Ns.Api.App_Start
         {
             filters.Add(new ExceptionHandlerFilterAttribute());
 
-            //filters.Add(new AuthorizeAttribute());
             filters.Add(new AuthenticationAttribute());
+            filters.Add(new AuthorizeAttribute());
         }
     }
 }

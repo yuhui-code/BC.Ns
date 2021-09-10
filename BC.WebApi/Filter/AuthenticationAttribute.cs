@@ -17,15 +17,12 @@ namespace BC.WebApi.Filter
 
         public async Task AuthenticateAsync(HttpAuthenticationContext context, CancellationToken cancellationToken)
         {
-            // Gets the body of the request
-            var request = context.Request;
-
             // Gets the token object of the request
-            var authorization = request.Headers.Authorization;
+            var authorization = context.Request.Headers.Authorization;
 
-            if (authorization == null || authorization.Scheme != "Bearer" || string.IsNullOrEmpty(authorization.Parameter))
+            if(authorization == null)
             {
-                throw new UnauthorizedException();
+                return;
             }
 
             // Call this method to generate the corresponding "ID card holder" according to the token

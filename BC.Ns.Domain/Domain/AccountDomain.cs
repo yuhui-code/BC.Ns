@@ -23,11 +23,11 @@ namespace BC.Ns.Domain.Domain
 
         public async Task<AccountResponse> Login(string username, string password)
         {
-            var userinfo = await _dbContext.Users.FirstOrDefaultAsync(c => c.UserName == username && !c.IsDelete);
+            //var userinfo = await _dbContext.Users.FirstOrDefaultAsync(c => c.UserName == username && !c.IsDelete);
 
             var identityClaims = new List<Claim>()
                 {
-                    new Claim("email",userinfo.Email)
+                    new Claim("email","huiyu")
                 };
 
             var token = TokenHelper.GenerateToken(identityClaims);

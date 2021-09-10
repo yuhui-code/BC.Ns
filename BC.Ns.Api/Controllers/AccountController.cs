@@ -20,7 +20,8 @@ namespace BC.Ns.Api.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet, Route("login")]
-        [OverrideAuthentication]
+        //[OverrideAuthentication]
+        [AllowAnonymous]
         public async Task<AccountResponse> Login(string username, string password)
         {
             username = "huiyu";
